@@ -1,8 +1,5 @@
 /*Template for every code*/
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.StringTokenizer;
 
 class Codechef {
@@ -62,6 +59,6 @@ class Codechef {
         }
     }
     public static void main(String[] args) throws Exception {
-        System.out.println("dfrgjr");
+        FastReader sc = new FastReader(new FileInputStream("src/input.in"));
     }
 }
