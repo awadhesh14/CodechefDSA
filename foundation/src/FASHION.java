@@ -1,11 +1,8 @@
-/*Template for every code*/
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.StringTokenizer;
 import java.util.Vector;
 
-class ARRANGE {
+class FASHION {
     static class FastReader
     {
         BufferedReader br;
@@ -62,28 +59,25 @@ class ARRANGE {
         }
     }
     public static void main(String[] args) throws Exception {
-        FastReader sc = new FastReader(new FileInputStream("foundation/src/input.in"));
-        int t = sc.nextInt();
-        int j,n;
-        Vector<Integer> arr = new Vector<>();
-
-        while(t-->0){
-            n = sc.nextInt();
-            arr.clear();
-            StringBuilder srr = new StringBuilder();
-            for (int i=0;i<n;i++) {
-                j = sc.nextInt();
-                if (j==1) srr.append(1+" ");
-                else arr.add(j);
-            }
-            arr.sort((p,q)->  q-p);
-            if (arr.size()==2 && arr.get(0)==3 && arr.get(1)==2){
-                Collections.swap(arr,0,1);
-            }
-
-            for(int i:arr)
-                srr.append(i+" ");
-            System.out.println(srr);
+        FastReader sc = new FastReader(System.in);
+        int t = sc.nextInt(),n;
+        long ans;
+        Vector<Integer> M,W;// = new Vector<>();
+        StringBuilder str = new StringBuilder(2*t+2);
+        while (t-- > 0) {
+            n=sc.nextInt();
+            ans=0;
+            M = new Vector<>(n);W = new Vector<>(n);
+            for(int i=0;i<n;i++)
+                M.add(sc.nextInt());
+            for(int i=0;i<n;i++)
+                W.add(sc.nextInt());
+            M.sort(Integer::compareTo);
+            W.sort(Integer::compareTo);
+            for (int i=0;i<n;i++)
+                ans+= (W.get(i)*M.get(i));
+            str.append(ans+"\n");
         }
+        System.out.println(str);
     }
 }
