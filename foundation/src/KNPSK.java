@@ -2,7 +2,7 @@
 import java.io.*;
 import java.util.*;
 
-class Main {
+class KNPSK {
     static class FastReader
     {
         BufferedReader br;
