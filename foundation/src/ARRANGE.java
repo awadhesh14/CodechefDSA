@@ -1,8 +1,11 @@
-/*TODO: I am skipping this*/
+/*Template for every code*/
 import java.io.*;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.StringTokenizer;
+import java.util.Vector;
 
-class LEMUSIC {
+class Main {
     static class FastReader
     {
         BufferedReader br;
@@ -58,42 +61,29 @@ class LEMUSIC {
             return str;
         }
     }
-
     public static void main(String[] args) throws Exception {
-        FastReader sc = new FastReader(System.in);
+        FastReader sc = new FastReader(new FileInputStream("foundation/src/input.in"));
         int t = sc.nextInt();
-        ArrayList<Integer> brr ;
-        HashMap<Integer,Integer> map = new HashMap<>();
-        while (t-- > 0) {
-            long extra= 0;
-            int N = sc.nextInt();
-            map.clear();
-            for(int n=0;n<N;n++){
-                int B = sc.nextInt(),L = sc.nextInt();
-                if(map.containsKey(B)) {
-                    if (map.get(B) > L) {
-                        extra += map.get(B);
-                        map.put(B, L);
-                    }
-                    else{
-                        extra += L;
-                    }
-                }
-                else {
-                    map.put(B, L);
-                }
-                //arr.add(new Bands(B,L));
+        int j,n;
+        Vector<Integer> arr = new Vector<>();
+
+        while(t-->0){
+            n = sc.nextInt();
+            arr.clear();
+            StringBuilder srr = new StringBuilder();
+            for (int i=0;i<n;i++) {
+                j = sc.nextInt();
+                if (j==1) srr.append(1+" ");
+                else arr.add(j);
             }
-            long ans = extra*map.size();
-            int i=1;
-            brr = new ArrayList<>(map.values());
-            Collections.sort(brr);
-            for(int j:brr){
-                ans += i*j;
-                i++;
+            arr.sort((p,q)->  q-p);
+            if (arr.size()==2 && arr.get(0)==3 && arr.get(1)==2){
+                Collections.swap(arr,0,1);
             }
-            System.out.println(ans);
+
+            for(int i:arr)
+                srr.append(i+" ");
+            System.out.println(srr);
         }
     }
-
 }
