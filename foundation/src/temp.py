@@ -4,55 +4,29 @@ sys.stdin = open('input.in', 'r')
 
 # started at 
 # a = []
+MAXI = 999999999
+def func(h,K,i,dp):
+	if h==0:
+		return 0
+	elif h<0:
+		return MAXI
+	elif i>=len(K) and h>0:
+		return MAXI
+	elif dp[h][i]!=-1:
+		return dp[h][i]
+	else:
+		
+		dp[h][i] = min(1+func(h-K[i],K,i,dp) if dp[h-K[i]][i]==-1 else 1+dp[h-K[i]][i],func(h,K,i+1,dp) if dp[h][i+1]==-1 else dp[h][i+1])
+		# dp[h][i] = min(1+func(h-K[i],K,i,dp),func(h,K,i+1,dp))
+		return  dp[h][i]
 
 
-# started at 
-# a = []
-import sys
-sys.setrecursionlimit(100000+5)
-def func(h,K,i,coins):
-	if(h<=0):
-		# print("h<=0",h,i,coins)
-		return coins
-	if(i>=len(K)):
-		# print("i>=len",h,i,coins)
-		return coins
-	# if(dp[h]!=0):
-	# 	return dp[h]+coins
-	if(dp[h][K[i]]!=0):
-		# print("herre")
-		return dp[h][K[i]] + coins
-	if (K[i]>h):
-		# return func(h,K,i+1,coins) if i<len(K)-1 else 250000
-		dp[h][K[i]] = func(h,K,i+1,coins) if i<len(K)-1 else 250000
-		return dp[h][K[i]]
-	if(i==len(K)-1):
-		x =  func(h-K[i],K,i,coins+1)
-		y = func(h,K,i+1,coins) if i<len(K)-1 else 250000
-		# return min(x,y)
-		dp[h][K[i]] = min(x,y)
-		return dp[h][K[i]]
-	x =  func(h-K[i],K,i,coins+1)
-	z = func(h-K[i],K,i+1,coins+1) if i<len(K)-1 else 250000
-	y = func(h,K,i+1,coins) if i<len(K)-1 else 250000
-	# print("returning",h,i,coins)
-	dp[h][K[i]] = min(x,y,z)
-	return dp[h][K[i]]
-	# a.append((h,K[i],min(x,y,z)))#,ans,x,y,z))
-	# return min(x,y,z)
-dp = [[0 for i in range(1008)] for j in range(1008)] 
-# dp = [0]*1008
+from copy import copy
 for _ in range(int(input())):
 	N =  int(input())
-	ans,H,K = 0,list(map(lambda x: 2*int(x),input().split())),list(map(int,input().split()))
-	mx = max(H)
-	for h in H:
-		ans += func(h,K,0,0)
-		# ans+=dp[h]
-		# print(dp[h])
-		# print(x)
-	print(ans)
-# for i in sorted(a):
-# 	print(i)
-# print(len(a) - len(set(a)))
-# submitted at
+	# H =list(map(lambda x: 2*int(x),input().split()))
+	H = list(map(int,input().split()))
+	K = list(map(int,input().split()))
+	_1 = [-1 for i in range(1008)]
+	dp = [copy(_1) for j in range(1008)]
+	print(sum([func(2*h,K,0,dp) for h in H]))
