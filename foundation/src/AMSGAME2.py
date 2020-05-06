@@ -1,0 +1,9 @@
+import sys 
+sys.stdin = open('input.in', 'r')  
+# sys.stdout = open('outputf.in', 'w') 
+
+# started 01:28
+
+ 
+
+# submitted
